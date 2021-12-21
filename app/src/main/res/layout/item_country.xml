@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Burada country modeli ve click olayı için clickListener
+     interface'i ayarladık. -->
+    <data>
+        <variable
+            name="country"
+            type="com.ahmetertas.kotlincountries.model.Country" />
+
+        <variable
+            name="listener"
+            type="com.ahmetertas.kotlincountries.adapter.CountryClickListener" />
+    </data>
+
+    <!-- Bu şekilde click olayı için interface'deki metoda atama yapıyoruz.
+    O interface'i de implemente eden bir sınıfta işlemleri yazıcaz ve
+     click olayını handle edicek. -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="horizontal"
+    android:onClick="@{listener::onCountryClicked}">
+
+    <ImageView
+        android:id="@+id/imgCountry"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:downloadUrl="@{country.countryImage}">
+
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/countryUId"
+            android:visibility="gone"
+            android:text="@{String.valueOf(country.uId)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/nameCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:text="@{country.countryName}"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/nameRegion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="5dp"
+            android:text="@{country.countryRegion}"/>
+    </LinearLayout>
+</LinearLayout>
+</layout>
